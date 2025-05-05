@@ -11,30 +11,24 @@ def estInitialize():
     # The second returned variable must be a list of student names.
     # 
     # The third return variable must be a string with the estimator type
-
-    #we make the internal state a list, with the first three elements the position
-    # x, y; the angle theta; and our favorite color. 
-    x = 0
-    y = 0
-    theta = 0
-    color = 'green' 
-
     # Constants
     r = 0.425   # wheel radius
     B = 0.8     # Wheel base
 
-    # Initial state
-    x0 = np.array([0.0, 0.0, np.pi/4])
+    # Initial state (cyclist startes near the origin and is initially heading North-East)
+    x0 = np.array([0.0, 0.0, np.pi/2])
 
     # Initial covariance
     P0 = np.diag([1.0, 1.0, 0.1])   # Have some initial uncertainty
 
     # Process noise covariance  (TUNE)
-    Q = np.diag([0.2, 0.2, 0.05])
+    #Q = np.diag([0.2, 0.1, 0.05])
+    Q = np.diag([1.0, 1.0, 0.25])
 
     # Measurement noise covariance  (TUNE)
    # R = np.diag([2.1, 2.0])
     R = np.array([[1.09, 1.53], [1.53, 2.99]])  # Have some initial uncertainty
+
     # note that there is *absolutely no prescribed format* for this internal state.
     # You can put in it whatever you like. Probably, you'll want to keep the position
     # and angle, and probably you'll remove the color.

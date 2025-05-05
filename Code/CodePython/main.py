@@ -77,6 +77,7 @@ if not np.isnan(score):
 # make some plots:
 #===============================================================================
 #feel free to add additional plots, if you like.
+plt.close('all')
 print('Generating plots')
 
 figTopView, axTopView = plt.subplots(1, 1)
