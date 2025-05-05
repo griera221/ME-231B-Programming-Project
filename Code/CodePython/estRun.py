@@ -13,7 +13,7 @@ def estRun(time, dt, internalStateIn, steeringAngle, pedalSpeed, measurement):
 
     theta = x[2]            # current angle
     v = 5 * r * pedalSpeed  # linear velocity
-    tan_gamma = np.tan(steeringAngle) # steering angle
+    tan_gamma = np.tan(steeringAngle) 
     cos_theta = np.cos(theta) 
     sin_theta = np.sin(theta)
 
@@ -48,13 +48,13 @@ def estRun(time, dt, internalStateIn, steeringAngle, pedalSpeed, measurement):
             [1, 0, -0.5 * B * np.sin(x_pred[2])],
             [0, 1, 0.5 * B * np.cos(x_pred[2])]
         ])
-        
+
         y = meas - h   
         S = H@P_pred @ H.T + R
-        K = P_pred @ H.T @ np.linalg.inv(S)
+        K = P_pred @ H.T @ np.linalg.inv(S) # Kalman Gain
 
-        x_update = x_pred + K @ y
-        P_update = (np.eye(3) - K @ H) @ P_pred
+        x_update = x_pred + K @ y   #Update state
+        P_update = (np.eye(3) - K @ H) @ P_pred # Update covariance
     else:
         x_update = x_pred
         P_update = P_pred
